@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+  about-me:
+    container_name: about_me
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+    

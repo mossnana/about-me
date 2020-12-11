@@ -1,65 +1,109 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import WelcomeBackground from "../containers/Background";
+import WoodBox from "../components/WoodBox";
+import Box from "../components/Box";
+import Text from "../components/Text";
+import { useState } from "react";
+import { updateUser } from "../redux/actions/userAction";
+import { User } from "../models/User";
 
-export default function Home() {
+const Index = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [anime, changeAnime] = useState({
+    initial: "init",
+    animate: "visible",
+    variants: {
+      init: {
+        y: -300,
+      },
+      visible: {
+        y: 0,
+      },
+    },
+  });
+
+  const newAnime = (old, init, visible) => {
+    return {
+      ...old,
+      variants: {
+        init,
+        visible,
+      },
+    };
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    changeAnime(newAnime(anime, { y: 0 }, { y: -1000 }));
+    setTimeout(() => {
+      router.push("/home");
+    }, 500);
+  };
+
+  const inputName = (e) => {
+    e.preventDefault();
+    let user = new User(e.target.value)
+    dispatch(updateUser(user));
+  };
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <WelcomeBackground>
+      <Box height="30vh" />
+      <motion.div
+        initial={anime.initial}
+        animate={anime.animate}
+        variants={anime.variants}
+      >
+        <WoodBox height="30vh" width="30vh">
+          <Text size="15px" color="white">
+            Your name ?
+          </Text>
+          <input
+            type="text"
+            id="input_name"
+            className="nes-input"
+            maxLength="10"
+            onChange={inputName}
+          />
+          <Box height="2vh" />
+          <Text size="15px" color="white">
+            Remember me ?
+          </Text>
+          <label>
+            <input
+              type="radio"
+              className="nes-radio is-dark"
+              name="answer"
+              defaultChecked
+            />
+            <Text tag="span" size="15px" color="white">
+              Yes
+            </Text>
+          </label>
+          <label>
+            <input type="radio" className="nes-radio is-dark" name="answer" />
+            <Text tag="span" size="15px" color="white">
+              No
+            </Text>
+          </label>
+          <Box height="2vh" />
+          <Link href="/home">
+            <button
+              type="button"
+              className="nes-btn is-success"
+              onClick={submit}
+            >
+              Submit
+            </button>
+          </Link>
+        </WoodBox>
+      </motion.div>
+    </WelcomeBackground>
+  );
+};
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
-}
+export default Index;
