@@ -5,13 +5,17 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "public", "index.html"),
-    })
+      template: path.resolve(__dirname, "src", "public", "index.html"),
+    }),
   ],
   devServer: {
-    open: 'google-chrome',
+    port: "3000",
+    open: "google-chrome",
     contentBase: path.resolve(__dirname, "build"),
     hot: true,
   },
@@ -19,8 +23,17 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+      },
+    ],
   },
 };
