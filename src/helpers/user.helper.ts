@@ -1,9 +1,6 @@
-import AES from 'crypto-js/aes'
+import CryptoJS from 'crypto-js'
 
-export const encryptPwd = (password: string, key: string): string => {
-  return AES.encrypt(password, key).toString()
-}
-
-export const decryptPwd = (decryptPwd: string, key: string): string => {
-  return AES.decrypt(decryptPwd, key).toString()
+export const hashPwd = (password: string): string => {
+  const firstRound: string = CryptoJS.SHA256(password).toString()
+  return CryptoJS.SHA256(firstRound).toString()
 }

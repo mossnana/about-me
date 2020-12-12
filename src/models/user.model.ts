@@ -1,3 +1,4 @@
+import * as helpers from '../helpers/user.helper'
 
 export class User {
   name: string
@@ -13,7 +14,7 @@ export class User {
   }
 
   public set password(password: string) {
-    this._password = password
+    this._password = helpers.hashPwd(password)
   }
 
   public get password(): string {

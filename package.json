@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "webpack --mode development --hot",
     "start": "webpack serve",
-    "test": "mocha --require esm -r ts-node/register test/**"
+    "test": "mocha --require esm -r ts-node/register test/*/**"
   },
   "repository": {
     "type": "git",
