@@ -6,7 +6,7 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: [".ts", ".tsx", ".js"],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -18,6 +18,10 @@ module.exports = {
     open: "google-chrome",
     contentBase: path.resolve(__dirname, "build"),
     hot: true,
+    historyApiFallback: {
+      disableDotRule: true,
+      index: "build/index.html",
+    },
   },
   module: {
     rules: [
@@ -31,7 +35,12 @@ module.exports = {
       },
       {
         test: /\.(ts|js)x?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/],
+        use: ["babel-loader"],
+      },
+      {
+        test: /\.(ts|js)?$/,
+        exclude: [/node_modules/],
         use: ["babel-loader"],
       },
     ],

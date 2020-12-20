@@ -1,8 +1,9 @@
 import * as React from "react";
-import Paths from "./constants/paths";
+import AppRouter from "./Router";
+import './styles/main.scss';
 
-const App = () => {
-  return <div>{Paths.Root}</div>;
+const App: React.FC = (): React.ReactElement => {
+  return <AppRouter />;
 };
 
 export default App;

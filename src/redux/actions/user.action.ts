@@ -1,4 +1,2 @@
 
-export const checkCookie = () => {
-  
-}
+export const checkCookie = () => {}

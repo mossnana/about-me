@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "webpack --mode development --hot",
     "start": "webpack serve",
+    "build": "webpack --mode production",
     "test": "mocha --require esm -r ts-node/register test/*/**"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "@types/crypto-js": "^4.0.1",
     "@types/mocha": "^8.2.0",
     "@types/react-router-dom": "^5.1.6",
+    "@types/styled-components": "^5.1.7",
     "babel-loader": "^8.2.2",
     "chai": "^4.2.0",
     "css-loader": "^5.0.1",
@@ -41,6 +43,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@types/gsap": "^1.20.2",
     "@types/node": "^14.14.12",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
@@ -50,6 +53,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1",
     "webpack": "^5.10.0"
   }
 }
