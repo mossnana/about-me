@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from './containers/home.container'
 import { NotFoundContainer } from "./containers/notfound.container";
 
 const PublicRoutes: React.FC = (props): any => {
@@ -9,7 +10,7 @@ const PublicRoutes: React.FC = (props): any => {
       <Switch>
         {/* Home */}
         <Route exact path="/">
-          <p>Hello Home route</p>
+          <Home />
         </Route>
         {/* Login */}
         <Route exact path="/login">

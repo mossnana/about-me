@@ -2,9 +2,80 @@
 
 $font: "Karla", sans-serif;
 $primary-color: #3e6f9e;
+$profileUrl: 'https://scontent.fbkk5-7.fna.fbcdn.net/v/t1.0-9/134991433_3474918116066998_7566402172155156613_o.jpg?_nc_cat=108&ccb=2&_nc_sid=174925&_nc_eui2=AeHuZGwKnPVLeeqad2386mnyeT4NQsrTtqZ5Pg1CytO2pn76ifo3DZEI_aPaGSeztOKnw53dpLpM6pFv1nP1P58u&_nc_ohc=jRgA7LDb3AMAX_9AmMY&_nc_ht=scontent.fbkk5-7.fna&oh=5525ee57494cc51ad1e17b0f6cce0e08&oe=602AD4D0';
 
 body {
     font-family: $font;
     color: $primary-color;
     margin: 0px!important;
+    background-color: #AEDADA;
+}
+
+.main-container {
+    height: 82.83vh;
+    padding: 0px;
+    margin-top: 4.8vh;
+    margin-bottom: 4.8vh;
+    margin-left: 6.72vw;
+    margin-right: 6.72vw;
+    display: flex;
+    background-color: transparent;
+}
+
+.main-container-left {
+    margin: 0px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    flex-grow: 2;
+    background-color: #F0F7F7;
+}
+
+.main-container-right {
+    text-align: center;
+    margin: 0px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    flex-grow: 1;
+    background-color: #FFFFFF;
+}
+
+.profile {
+    display: block;
+}
+
+.profile-cover {
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 50px;
+    background-color: #FFC6E3;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 130px;
+    left: 150px;
+    border-radius: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: white;
+    background-color: violet;
+    background-size: cover;
+    background-position: 190px 20px;
+    background-image: url($profileUrl);
+}
+
+.profile-detail {
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.profile-detail-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 50px;
 }
